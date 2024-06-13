@@ -2,7 +2,7 @@ import { aboutPage } from "./pages/aboutPage";
 import { contactPage } from "./pages/contactPage";
 import { dashboardPage } from "./pages/dashboardPage";
 import { homePage } from "./pages/homePage";
-import { loginPage } from "./pages/loginPage";
+import { login, loginPage } from "./pages/loginPage";
 import { productDetailsPage } from "./pages/productDetailsPage";
 import { productsPage } from "./pages/productsPage";
 import { signupPage } from "./pages/signupPage";
@@ -22,8 +22,9 @@ const render = (children) => {
 </nav><div>${children}<div>`;
 };
 
-const renderFullPage = (children) => {
+const renderFullPage = (children, createEventLosteners) => {
   document.querySelector("#app").innerHTML = `<div>${children}<div>`;
+  createEventLosteners();
 };
 
 export const routes = {
@@ -45,6 +46,6 @@ router
   .on(routes.about, () => render(aboutPage()))
   .on(routes.contact, () => render(contactPage()))
   .on(routes.dashboard, () => render(dashboardPage()))
-  .on(routes.login, () => renderFullPage(loginPage()))
+  .on(routes.login, () => renderFullPage(loginPage(), login))
   .on(routes.signup, () => renderFullPage(signupPage()))
   .resolve();
