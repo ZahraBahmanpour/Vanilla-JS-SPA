@@ -9,6 +9,23 @@ import { signupPage } from "./pages/signupPage";
 import "./style.css";
 import Navigo from "navigo";
 
+const render = (children) => {
+  document.querySelector("#app").innerHTML = `<nav>
+  <menu>
+    <li><a href="/" data-navigo>Home</a></li>
+    <li><a href="/products" data-navigo>Products</a></li>
+    <li><a href="/about" data-navigo>About us</a></li>
+    <li><a href="/contact" data-navigo>Contact us</a></li>
+    <li><a href="/dashboard" data-navigo>Dashboard</a></li>
+    <li><a href="/signup" data-navigo>Sign Up</a></li>
+  </menu>
+</nav><div>${children}<div>`;
+};
+
+const renderFullPage = (children) => {
+  document.querySelector("#app").innerHTML = `<div>${children}<div>`;
+};
+
 export const routes = {
   home: "/",
   products: "/products",
@@ -22,12 +39,12 @@ export const routes = {
 
 export const router = new Navigo("/");
 router
-  .on(routes.home, homePage)
-  .on(routes.products, productsPage)
-  .on(routes.productDetails, (match) => productDetailsPage(match))
-  .on(routes.about, aboutPage)
-  .on(routes.contact, contactPage)
-  .on(routes.dashboard, dashboardPage)
-  .on(routes.login, loginPage)
-  .on(routes.signup, signupPage)
+  .on(routes.home, () => render(homePage()))
+  .on(routes.products, () => render(productsPage()))
+  .on(routes.productDetails, (match) => render(productDetailsPage(match)))
+  .on(routes.about, () => render(aboutPage()))
+  .on(routes.contact, () => render(contactPage()))
+  .on(routes.dashboard, () => render(dashboardPage()))
+  .on(routes.login, () => renderFullPage(loginPage()))
+  .on(routes.signup, () => renderFullPage(signupPage()))
   .resolve();
