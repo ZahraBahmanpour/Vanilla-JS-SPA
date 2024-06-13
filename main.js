@@ -1,6 +1,6 @@
 import { aboutPage } from "./pages/aboutPage";
 import { contactPage } from "./pages/contactPage";
-import { dashboardPage } from "./pages/dashboardPage";
+import { dashboardPage, logout } from "./pages/dashboardPage";
 import { homePage } from "./pages/homePage";
 import { login, loginPage } from "./pages/loginPage";
 import { productDetailsPage } from "./pages/productDetailsPage";
@@ -45,7 +45,7 @@ router
   .on(routes.productDetails, (match) => render(productDetailsPage(match)))
   .on(routes.about, () => render(aboutPage()))
   .on(routes.contact, () => render(contactPage()))
-  .on(routes.dashboard, () => render(dashboardPage()))
+  .on(routes.dashboard, () => renderFullPage(dashboardPage(), logout))
   .on(routes.login, () => renderFullPage(loginPage(), login))
   .on(routes.signup, () => renderFullPage(signupPage()))
   .resolve();
