@@ -5,7 +5,7 @@ import { homePage } from "./pages/homePage";
 import { login, loginPage } from "./pages/loginPage";
 import { productDetailsPage } from "./pages/productDetailsPage";
 import { productsPage } from "./pages/productsPage";
-import { signupPage } from "./pages/signupPage";
+import { signup, signupPage } from "./pages/signupPage";
 import "./style.css";
 import Navigo from "navigo";
 
@@ -47,5 +47,5 @@ router
   .on(routes.contact, () => render(contactPage()))
   .on(routes.dashboard, () => renderFullPage(dashboardPage(), logout))
   .on(routes.login, () => renderFullPage(loginPage(), login))
-  .on(routes.signup, () => renderFullPage(signupPage()))
+  .on(routes.signup, () => renderFullPage(signupPage(), signup))
   .resolve();
